@@ -16,8 +16,13 @@
           <input type="text" id="form-author" name="author" required/>
           <label for="form-page">Page #: </label>
           <input type="number" id="form-page" name="page" required/>
-          <label for="form-read">Read ?: </label>
-          <input type="text" id="form-read" name="read" required/>
+          <div id="form-read">Read:</div>
+          <div class="radio-container">
+            <input type="radio" id="read-yes" name="read" checked/>
+              <label for="read-yes">Yes</label>
+              <input type="radio" id="read-no" name="read"/>
+              <label for="read-no">No</label>
+          </div>
           <div class="button-container">
               <button type="button" id="cancel">Cancel</button>
               <button type="submit" id="confirm">Confirm</button>

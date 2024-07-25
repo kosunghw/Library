@@ -206,7 +206,8 @@ form {
   gap: 30px;
 }
 
-label {
+label,
+#form-read {
   color: var(--text-color);
   font-family: "silkscreenregular";
   font-size: 20px;
@@ -220,6 +221,19 @@ input {
   font-family: "orbitronregular";
   font-weight: 600;
   letter-spacing: 2px;
+  align-self: center;
+}
+
+input[type="radio"] {
+  width: 20px;
+}
+
+.radio-container {
+  grid-column: 2/3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .button-container {
