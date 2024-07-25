@@ -1,5 +1,5 @@
 const myLibrary = [];
-const tempLibrary = [];
+const displayLibrary = [];
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -18,41 +18,123 @@ function addBookToLibrary(book) {
 // Select card container
 const bookShelf = document.querySelector("#cards");
 function display() {
-  for (const book of myLibrary) {
-    if (!tempLibrary.includes(book)) {
-      // IF BOOK IS NOT IN SHELF
-      // For every element in myLibrary,
-      // Create a new card div
-      const newCard = document.createElement("div");
-      // Create div.title, div.author, div.pages, div.read
-      // And append each to the card.
-      const title = document.createElement("div");
-      title.textContent = `${book.title}`;
-      title.classList.add("title");
-      const author = document.createElement("div");
-      author.textContent = `${book.author}`;
-      author.classList.add("author");
-      const pages = document.createElement("div");
-      pages.textContent = `${book.pages}p.`;
-      pages.classList.add("pages");
-      const read = document.createElement("div");
-      read.textContent = `${book.read}`;
-      read.classList.add("read");
+  let lastChild = bookShelf.lastChild;
+  if (lastChild === null) {
+    // IF SHELF IS EMPTY
+    const newCard = document.createElement("div");
+    // Create div.title, div.author, div.pages, div.read
+    // And append each to the card.
+    const title = document.createElement("div");
+    title.textContent = `${myLibrary[0].title}`;
+    title.classList.add("title");
+    const author = document.createElement("div");
+    author.textContent = `${myLibrary[0].author}`;
+    author.classList.add("author");
+    const pages = document.createElement("div");
+    pages.textContent = `${myLibrary[0].pages}p.`;
+    pages.classList.add("pages");
+    const read = document.createElement("div");
+    read.textContent = `${myLibrary[0].read}`;
+    read.classList.add("read");
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "DELETE";
+    deleteBtn.classList.add("delete-button");
+    const readBtn = document.createElement("button");
+    readBtn.textContent = "READ";
+    readBtn.classList.add("read-button");
 
-      newCard.appendChild(title);
-      newCard.appendChild(author);
-      newCard.appendChild(pages);
-      newCard.appendChild(read);
-      newCard.classList.add("card");
-      newCard.classList.add("grid-container");
+    newCard.appendChild(title);
+    newCard.appendChild(author);
+    newCard.appendChild(pages);
+    newCard.appendChild(read);
+    newCard.appendChild(readBtn);
+    newCard.appendChild(deleteBtn);
+    newCard.classList.add("card");
+    newCard.classList.add("grid-container");
 
-      // Append the new card to the book shelf
-      bookShelf.appendChild(newCard);
-      tempLibrary.push(book);
-    }
+    // Append the new card to the book shelf
+    bookShelf.appendChild(newCard);
+    setElementId();
+  } else {
+    let newIndex = Number(lastChild.id) + 1;
+    const newCard = document.createElement("div");
+    // Create div.title, div.author, div.pages, div.read
+    // And append each to the card.
+    const title = document.createElement("div");
+    title.textContent = `${myLibrary[newIndex].title}`;
+    title.classList.add("title");
+    const author = document.createElement("div");
+    author.textContent = `${myLibrary[newIndex].author}`;
+    author.classList.add("author");
+    const pages = document.createElement("div");
+    pages.textContent = `${myLibrary[newIndex].pages}p.`;
+    pages.classList.add("pages");
+    const read = document.createElement("div");
+    read.textContent = `${myLibrary[newIndex].read}`;
+    read.classList.add("read");
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "DELETE";
+    deleteBtn.classList.add("delete-button");
+    const readBtn = document.createElement("button");
+    readBtn.textContent = "READ";
+    readBtn.classList.add("read-button");
 
-    continue;
+    newCard.appendChild(title);
+    newCard.appendChild(author);
+    newCard.appendChild(pages);
+    newCard.appendChild(read);
+    newCard.appendChild(readBtn);
+    newCard.appendChild(deleteBtn);
+    newCard.classList.add("card");
+    newCard.classList.add("grid-container");
+
+    // Append the new card to the book shelf
+    bookShelf.appendChild(newCard);
+    setElementId();
   }
+  //   for (const book of myLibrary) {
+  //     if (!displayLibrary.includes(book)) {
+  //       // IF SHELF IS EMPTY
+  //       // For every element in myLibrary,
+  //       // Create a new card div
+  //       const newCard = document.createElement("div");
+  //       // Create div.title, div.author, div.pages, div.read
+  //       // And append each to the card.
+  //       const title = document.createElement("div");
+  //       title.textContent = `${book.title}`;
+  //       title.classList.add("title");
+  //       const author = document.createElement("div");
+  //       author.textContent = `${book.author}`;
+  //       author.classList.add("author");
+  //       const pages = document.createElement("div");
+  //       pages.textContent = `${book.pages}p.`;
+  //       pages.classList.add("pages");
+  //       const read = document.createElement("div");
+  //       read.textContent = `${book.read}`;
+  //       read.classList.add("read");
+  //       const deleteBtn = document.createElement("button");
+  //       deleteBtn.textContent = "DELETE";
+  //       deleteBtn.classList.add("delete-button");
+  //       const readBtn = document.createElement("button");
+  //       readBtn.textContent = "READ";
+  //       readBtn.classList.add("read-button");
+
+  //       newCard.appendChild(title);
+  //       newCard.appendChild(author);
+  //       newCard.appendChild(pages);
+  //       newCard.appendChild(read);
+  //       newCard.appendChild(readBtn);
+  //       newCard.appendChild(deleteBtn);
+  //       newCard.classList.add("card");
+  //       newCard.classList.add("grid-container");
+
+  //       // Append the new card to the book shelf
+  //       bookShelf.appendChild(newCard);
+  //       displayLibrary.push(book);
+  //     }
+  //     setElementId();
+  //     continue;
+  //   }
 }
 
 const dialog = document.getElementById("new-book-dialog");
@@ -83,12 +165,37 @@ confirmButton.addEventListener("click", (e) => {
   dialog.close();
 });
 
-const dune = new Book("Dune", "Frank Herbert", 896, "not read yet");
-const onyxStorm = new Book("Onyx Storm", "Rebecca Yarros", 500, "not read yet");
-const duner = new Book("Dune", "Frank Herbert", 896, "not read yet");
-const dunerr = new Book("Dune", "Frank Herbert", 896, "not read yet");
-addBookToLibrary(dune);
-addBookToLibrary(onyxStorm);
-addBookToLibrary(duner);
-addBookToLibrary(dunerr);
-display();
+bookShelf.addEventListener("click", (event) => {
+  let target = event.target;
+
+  switch (target.className) {
+    case "delete-button":
+      let index = Number(target.parentElement.id);
+      target.parentElement.remove();
+      if (myLibrary.length < 2) {
+        myLibrary.pop();
+        setElementId();
+      } else {
+        myLibrary.splice(index, 1);
+        setElementId();
+      }
+      break;
+  }
+});
+
+function setElementId() {
+  const children = bookShelf.childNodes;
+  for (let i = 0; i < children.length; i++) {
+    children[i].id = `${i}`;
+  }
+}
+// const deleteBtn = document.querySelectorAll(".delete-button");
+// for (const btn of deleteBtn) {
+//   btn.addEventListener("click", () => {
+//     let index = btn.parentElement.indexNumber;
+//     let book = myLibrary[index];
+//     myLibrary.splice(index, 1);
+//     displayLibrary.splice(index, 1);
+//     btn.parentElement.remove();
+//   });
+// }
