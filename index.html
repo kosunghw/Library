@@ -8,6 +8,24 @@
   </head>
   <body>
     <h1>Library</h1>
+    <dialog id="new-book-dialog">
+      <form id="new-book-form" action="#" method="post">
+          <label for="form-title">Title: </label>
+          <input type="text" id="form-title" name="title" required/>
+          <label for="form-author">Author: </label>
+          <input type="text" id="form-author" name="author" required/>
+          <label for="form-page">Page #: </label>
+          <input type="number" id="form-page" name="page" required/>
+          <label for="form-read">Read ?: </label>
+          <input type="text" id="form-read" name="read" required/>
+          <div class="button-container">
+              <button type="button" id="cancel">Cancel</button>
+              <button type="submit" id="confirm">Confirm</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+    <button id="new-book">NEW BOOK</button>
     <div class="grid-container" id="cards"></div>
     <script src="script.js"></script>
   </body>
