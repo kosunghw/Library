@@ -144,6 +144,17 @@ bookShelf.addEventListener("click", (event) => {
         setElementId();
       }
       break;
+
+    case "read-button":
+      // Select div with class="read" that has read status
+      const readStatus = target.parentElement.children.item(3);
+      // IF the book is read, switch to unread
+      if (readStatus.textContent === "Yes") {
+        readStatus.textContent = "Not read yet";
+      } else {
+        readStatus.textContent = "Yes";
+      }
+      break;
   }
 });
 
