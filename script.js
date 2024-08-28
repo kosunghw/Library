@@ -107,6 +107,8 @@ showButton.addEventListener("click", () => {
 cancelButton.addEventListener("click", () => {
   form.reset();
   dialog.close();
+  error.className = "error";
+  error.textContent = "FILL ALL INPUTS!";
 });
 
 confirmButton.addEventListener("click", (e) => {
@@ -127,6 +129,8 @@ confirmButton.addEventListener("click", (e) => {
   e.preventDefault();
   form.reset();
   dialog.close();
+  error.className = "error";
+  error.textContent = "FILL ALL INPUTS!";
 });
 
 bookShelf.addEventListener("click", (event) => {
@@ -163,4 +167,24 @@ function setElementId() {
   for (let i = 0; i < children.length; i++) {
     children[i].id = `${i}`;
   }
+}
+
+// Form validation
+const inputs = document.querySelectorAll("input");
+const error = document.querySelector("#form-title + span.error");
+
+inputs.forEach((input) => {
+  input.addEventListener("input", (event) => {
+    if (input.validity.valid) {
+      error.textContent = "";
+      error.className = "error hide";
+    } else {
+      showError();
+    }
+  });
+});
+
+function showError() {
+  error.textContent = "FILL ALL INPUTS!";
+  error.className = "error";
 }
